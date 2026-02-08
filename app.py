@@ -52,7 +52,13 @@ def rodar_programa():
     exibir_tela_inicial()
     print("\nEscolhemos Nossa Senha, Agora Tente Adivinhar!")
     while True:
-        senha_chutada = input("\nQual Senha Você Acha Que Escolhemos: ")
+        #loop para garantir um chute numérico
+        while True:
+                senha_chutada = input("\nQual Senha Você Acha Que Escolhemos: ")
+                if senha_chutada.isdigit():
+                    break
+                print("\033[37C", end="") # O cursor anda 37 colunas
+                print("└──>> Digite um número, sem letras!")
         print("\033[A\033[42C", end="") # O cursor sobe uma linha e anda 42 colunas
         if len(senha_chutada) == 4:
             acertos = sum(1 for i in range(4) if int(senha_chutada[i]) == NUMEROS_ESCOLHIDOS[i])
